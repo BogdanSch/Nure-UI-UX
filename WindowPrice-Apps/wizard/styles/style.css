@@ -1,0 +1,63 @@
+:root {
+  --primary: #0d6efd;
+  --primary-extra-light: #e6f0ff;
+  --white: #f7f7f7;
+  --golden: #d4a373;
+  --dark-grey: #4a4a4a;
+  --normal-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.wrapper {
+  overflow: hidden;
+}
+.wizard-step {
+  display: none;
+}
+.wizard-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--normal-shadow);
+}
+.active-step {
+  display: block;
+}
+.progress {
+  height: 24px;
+}
+.progress-bar {
+  width: 0%;
+  border-radius: 5px;
+}
+.option-card {
+  cursor: pointer;
+  transition: all 0.2s;
+  height: 100%;
+}
+.option-card:hover {
+  border-color: var(--primary);
+}
+.color-box {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--primary-extra-light);
+}
+.color-box.white {
+  background-color: var(--white);
+}
+.color-box.golden {
+  background-color: var(--golden);
+}
+.color-box.dark-grey {
+  background-color: var(--dark-grey);
+}
+.selected-card {
+  border-color: var(--primary) !important;
+  background-color: var(--primary-extra-light);
+}
+.btn {
+  border-radius: 12px;
+  font-size: 20px;
+  padding: 12px 24px;
+}

@@ -1,0 +1,79 @@
+:root {
+  --primary-frame-color: #212529;
+  --glass-color: rgba(135, 206, 250, 0.5);
+  --thick-glass-color: rgba(38, 146, 213, 0.7);
+  --sun-reflective-glass-color: rgba(59, 117, 153, 0.55);
+  --light: #faf5f5;
+  --grey: #e8e8e8;
+  --normal-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+body {
+  background-color: var(--grey);
+}
+
+.wrapper {
+  overflow: hidden;
+}
+
+.visual-configurator-wrapper {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: var(--light);
+  border-radius: 12px;
+  box-shadow: var(--normal-shadow);
+}
+
+.configurator__visual-area {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid var(--glass-color);
+}
+
+.window-model {
+  width: 100%;
+  height: 100%;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window-frame {
+  width: 250px;
+  height: 250px;
+  border: 15px solid var(--primary-frame-color);
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.glass-surface {
+  width: 100%;
+  height: 100%;
+  background-color: var(--glass-color);
+}
+.glass-surface.thick {
+  background-color: var(--thick-glass-color);
+}
+.glass-surface.sun-reflective {
+  background-color: var(--sun-reflective-glass-color);
+}
+
+.configurator__color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 5px;
+  border: 3px solid transparent;
+  transition: border 0.2s;
+}
+
+.configurator__color-option:hover {
+  border-color: var(--glass-color);
+}

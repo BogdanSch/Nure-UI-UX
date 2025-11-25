@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Window Price</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <main class="main">
+        <section class="app">
+          <div class="container">
+            <div class="app__wrap visual-configurator-wrapper">
+              <h1 class="text-center mb-4">
+                Window Price: Візуальний Конструктор
+              </h1>
+              <div class="row g-4">
+                <div class="col-md-7 configurator__visual-area">
+                  <h3 class="h5 mb-3">
+                    Візуалізація для:
+                    <span id="windowDimensions">1.2м x 1.5м</span>
+                  </h3>
+                  <div id="windowVisualization" class="window-model">
+                    <div class="window-frame" id="windowFrame">
+                      <div class="glass-surface"></div>
+                    </div>
+                  </div>
+                  <div class="mt-3 p-2 bg-dark rounded text-center">
+                    <p class="small mb-2 text-light">
+                      Натисніть для зміни кольору профілю:
+                    </p>
+                    <div
+                      class="btn-group configurator__color"
+                      role="group"
+                      id="colorPalette"
+                    >
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-light configurator__color-option"
+                        data-color="white"
+                        style="background-color: white"
+                        title="Білий"
+                      ></button>
+                      <button
+                        type="button"
+                        class="btn btn-sm configurator__color-option"
+                        data-color="golden"
+                        style="background-color: #ed9e3e"
+                        title="Золотий"
+                      ></button>
+                      <button
+                        type="button"
+                        class="btn btn-sm configurator__color-option"
+                        data-color="dark_grey"
+                        style="background-color: #495057"
+                        title="Темно-сірий"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 configurator__control-panel">
+                  <fieldset>
+                    <h3 class="h5">1. Налаштування розмірів</h3>
+                    <div class="mt-2">
+                      <label for="widthSlider" class="form-label mt-2"
+                        >Ширина (W): <span id="widthValue">1.2 м</span></label
+                      >
+                      <input
+                        type="range"
+                        class="form-range"
+                        id="widthSlider"
+                        min="0.5"
+                        max="3.0"
+                        step="0.1"
+                        value="1.2"
+                      />
+                    </div>
+                    <div class="mt-1">
+                      <label for="heightSlider" class="form-label"
+                        >Висота (H): <span id="heightValue">1.5 м</span></label
+                      >
+                      <input
+                        type="range"
+                        class="form-range"
+                        id="heightSlider"
+                        min="0.5"
+                        max="3.0"
+                        step="0.1"
+                        value="1.5"
+                      />
+                    </div>
+                    <div class="mt-1">
+                      <label for="quantitySlider" class="form-label"
+                        >Кількість (N):
+                        <span id="quantityValue">1 шт</span></label
+                      >
+                      <input
+                        type="range"
+                        class="form-range"
+                        id="quantitySlider"
+                        min="1"
+                        max="10"
+                        step="1"
+                        value="1"
+                      />
+                    </div>
+                  </fieldset>
+                  <fieldset class="mt-2">
+                    <h3 class="h5">2. Тип Профілю</h3>
+                    <select class="form-select mb-3" id="profileSelect">
+                      <option value="3_60">Профіль: 3 камер 6 см</option>
+                      <option value="5_70" selected>
+                        Профіль: 5 камер 7 см
+                      </option>
+                      <option value="7_80">Профіль: 7 камер 8 см</option>
+                      <option value="6_86">Профіль: 6 камер 8,6 см</option>
+                    </select>
+                  </fieldset>
+                  <fieldset class="mt-1">
+                    <h3 class="h5">3. Склопакет</h3>
+                    <select class="form-select mb-4" id="glassSelect">
+                      <option value="single">Склопакет: Однокамерний</option>
+                      <option value="double">Склопакет: Двокамерний</option>
+                      <option value="energy">
+                        Склопакет: Енергозберігаючий
+                      </option>
+                      <option value="sun">Склопакет: Сонцезахисний</option>
+                    </select>
+                  </fieldset>
+                  <button class="btn btn-success w-100" id="btnCalculate">
+                    Розрахувати
+                  </button>
+                  <div class="alert alert-info mt-3 text-center">
+                    Фінальна Вартість:
+                    <strong id="finalPrice" class="h3">0.00 грн</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.wrapper {
+  overflow: hidden;
+}
+.button--affordance {
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+.button--affordance:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+.button--affordance:active {
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  transform: translateY(1px);
+}
+.button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  column-gap: 12px;
+}
+.hidden {
+  display: none;
+}
+/* 2. Status Indicators (Error Prevention / Feedback) */
+.status--overdue {
+  color: #dc3545;
+  font-weight: bold;
+}
+.status--submitted,
+.status--complited {
+  color: #198754;
+  font-weight: bold;
+}
+.status--assigned {
+  color: #0d6efd;
+}
+.custom-card {
+  max-width: 400px;
+  width: 100%;
+}
+#auth-section {
+  background-color: #f8f9fa !important;
+}
+.card-header.bg-primary {
+  background-color: #0d6efd !important;
+}
+.card-header.bg-secondary {
+  background-color: #6c757d !important;
+}
+
+#student-dashboard,
+#teacher-dashboard {
+  display: none;
+}

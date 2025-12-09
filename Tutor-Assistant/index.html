@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutor Assistant</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <main class="main">
+        <section
+          id="auth-section"
+          class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light"
+        >
+          <div class="card shadow-lg p-4 custom-card">
+            <div class="card-body">
+              <h3 class="card-title text-center mb-4">Вхід до системи</h3>
+              <form id="login-form">
+                <div class="mb-3">
+                  <label for="username" class="form-label"
+                    >Ім'я користувача</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="role-select" class="form-label">Роль</label>
+                  <select class="form-select" id="role-select" required>
+                    <option value="" disabled selected>Оберіть роль...</option>
+                    <option value="teacher">
+                      Викладач (Анастасія Сергіївна)
+                    </option>
+                    <option value="student">Учень (Тестовий)</option>
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary w-100 button--affordance"
+                >
+                  Увійти
+                </button>
+                <div
+                  id="login-error"
+                  class="text-danger mt-2 text-center"
+                  style="display: none"
+                >
+                  Неправильні дані для входу.
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        <section
+          id="teacher-dashboard"
+          class="container-fluid py-4"
+        >
+          <header
+            class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom"
+          >
+            <h2 class="h3">Вітаємо, Анастасія Сергіївна!</h2>
+            <button id="logout-btn" class="btn btn-sm btn-outline-secondary">
+              Вийти <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </header>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">
+                Дашборд
+              </li>
+            </ol>
+          </nav>
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                  <h5 class="mb-0">
+                    <i class="fas fa-edit"></i> Призначити нове ДЗ (Клас 9-А)
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <form id="assignment-form">
+                    <div class="mb-3">
+                      <label for="assignment-title" class="form-label"
+                        >Назва завдання*</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="assignment-title"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="deadline-date" class="form-label"
+                        >Дедлайн (Дата)*</label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="deadline-date"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="deadline-time" class="form-label"
+                        >Дедлайн (Час)*</label
+                      >
+                      <input
+                        type="time"
+                        class="form-control"
+                        id="deadline-time"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="deadline-time" class="form-label"
+                        >Кількість варіантів*</label
+                      >
+                      <input
+                        type="number"
+                        min="1"
+                        step="1"
+                        class="form-control"
+                        id="assignment-variants-count"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="deadline-time" class="form-label"
+                        >Опис завдання*</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="assignment-description"
+                        rows="4"
+                        cols="6"
+                        required
+                      ></textarea>
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-success w-100 button--affordance"
+                    >
+                      <i class="fas fa-book-open"></i> Призначити ДЗ
+                    </button>
+                    <p class="mt-2 text-muted small">
+                      <i class="fas fa-info-circle"></i> Усі поля позначені *
+                      обов'язкові для заповнення.
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="card shadow">
+                <div class="card-header bg-secondary text-white">
+                  <h5 class="mb-0">
+                    <i class="fas fa-list-check"></i> Статус завдань (9-А клас)
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                    <label for="assignment-filter" class="form-label"
+                      >Фільтр завдань:</label
+                    >
+                    <select class="form-select" id="assignment-filter">
+                      <option value="all">Усі завдання</option>
+                      <option value="active">Активні</option>
+                      <option value="overdue">Прострочені</option>
+                    </select>
+                  </div>
+                  <div id="assignments-list" class="list-group">
+                    <p class="text-center text-muted mt-3">
+                      Немає призначених завдань.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          id="student-dashboard"
+          class="container py-4"
+        >
+          <header
+            class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom"
+          >
+            <h2 class="h3" id="student-greeting">Вітаємо, Учень!</h2>
+            <button
+              id="student-logout-btn"
+              class="btn btn-sm btn-outline-secondary"
+            >
+              Вийти <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </header>
+
+          <h4 class="mb-4">Мої активні завдання:</h4>
+          <div id="student-assignments-list" class="row">
+            <p class="text-center text-muted mt-3">
+              У Вас немає активних завдань.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./scripts/main.js" defer></script>
+  </body>
+</html>

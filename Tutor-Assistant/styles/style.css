@@ -1,19 +1,27 @@
+:root {
+  --primary: #3072fa;
+  --accent: #e9a736;
+  --dark: #1c1c1b;
+  --light: #f4f0f0;
+  --green: #198754;
+  --red: #eb4c21;
+}
+
 html {
   scroll-behavior: smooth;
 }
-
 .wrapper {
   overflow: hidden;
 }
-.button--affordance {
+.btn--shadow {
   transition: transform 0.1s, box-shadow 0.1s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
-.button--affordance:hover {
+.btn--shadow:hover {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
   transform: translateY(-1px);
 }
-.button--affordance:active {
+.btn--shadow:active {
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
   transform: translateY(1px);
 }
@@ -24,36 +32,53 @@ html {
   column-gap: 12px;
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
+/* buttons */
+.btn-primary {
+  background-color: var(--primary);
+}
+/* texts */
+.text-primary {
+  color: var(--light) !important;
+  background-color: var(--primary);
+}
+.text-accent {
+  background-color: var(--accent);
+}
+
 /* 2. Status Indicators (Error Prevention / Feedback) */
+#login-error {
+  color: var(--red);
+}
 .status--overdue {
-  color: #dc3545;
+  color: var(--accent);
   font-weight: bold;
 }
 .status--submitted,
 .status--complited {
-  color: #198754;
+  color: var(--green);
   font-weight: bold;
 }
 .status--assigned {
-  color: #0d6efd;
+  color: var(--primary);
 }
 .custom-card {
   max-width: 400px;
   width: 100%;
 }
 #auth-section {
+  display: flex;
   background-color: #f8f9fa !important;
 }
 .card-header.bg-primary {
-  background-color: #0d6efd !important;
+  background-color: var(--primary) !important;
 }
 .card-header.bg-secondary {
-  background-color: #6c757d !important;
+  background-color: var(--accent) !important;
+  color: var(--dark) !important;
 }
-
 #student-dashboard,
 #teacher-dashboard {
-  display: none;
+  display: block;
 }

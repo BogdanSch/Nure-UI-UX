@@ -46,15 +46,12 @@
                     <option value="student">Учень (Тестовий)</option>
                   </select>
                 </div>
-                <button
-                  type="submit"
-                  class="btn btn-primary w-100 button--affordance"
-                >
+                <button type="submit" class="btn btn-primary w-100 btn--shadow">
                   Увійти
                 </button>
                 <div
                   id="login-error"
-                  class="text-danger mt-2 text-center"
+                  class="mt-2 text-center"
                   style="display: none"
                 >
                   Неправильні дані для входу.
@@ -63,10 +60,7 @@
             </div>
           </div>
         </section>
-        <section
-          id="teacher-dashboard"
-          class="container-fluid py-4"
-        >
+        <section id="teacher-dashboard" class="container-fluid py-4">
           <header
             class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom"
           >
@@ -127,15 +121,15 @@
                     </div>
                     <div class="mb-3">
                       <label for="deadline-time" class="form-label"
-                        >Кількість варіантів*</label
+                        >Кількість варіантів</label
                       >
                       <input
                         type="number"
                         min="1"
                         step="1"
+                        value="1"
                         class="form-control"
                         id="assignment-variants-count"
-                        required
                       />
                     </div>
                     <div class="mb-3">
@@ -152,12 +146,13 @@
                     </div>
                     <button
                       type="submit"
-                      class="btn btn-success w-100 button--affordance"
+                      class="btn btn-primary w-100 btn--shadow"
                     >
                       <i class="fas fa-book-open"></i> Призначити ДЗ
                     </button>
                     <p class="mt-2 text-muted small">
-                      <i class="fas fa-info-circle"></i> Усі поля позначені *
+                      <i class="fas fa-info-circle"></i> Усі поля позначені
+                      <strong>*</strong>
                       обов'язкові для заповнення.
                     </p>
                   </form>
@@ -180,6 +175,7 @@
                       <option value="all">Усі завдання</option>
                       <option value="active">Активні</option>
                       <option value="overdue">Прострочені</option>
+                      <option value="finished">Завершені</option>
                     </select>
                   </div>
                   <div id="assignments-list" class="list-group">
@@ -192,10 +188,7 @@
             </div>
           </div>
         </section>
-        <section
-          id="student-dashboard"
-          class="container py-4"
-        >
+        <section id="student-dashboard" class="container py-4">
           <header
             class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom"
           >

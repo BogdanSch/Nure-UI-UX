@@ -34,20 +34,20 @@ const studentGreeting = document.getElementById("student-greeting");
 const assignmentFilter = document.getElementById("assignment-filter");
 
 const renderApp = (user) => {
-  authSection.style.display = "none";
-  teacherDashboard.style.display = "none";
-  studentDashboard.style.display = "none";
+  authSection.classList.add("hidden");
+  teacherDashboard.classList.add("hidden");
+  studentDashboard.classList.add("hidden");
 
   if (!user) {
-    authSection.style.display = "flex";
+    authSection.classList.remove("hidden");
     return;
   }
 
   if (user.role === ROLES.TEACHER) {
-    teacherDashboard.style.display = "block";
+    teacherDashboard.classList.remove("hidden");
     renderTeacherAssignments();
   } else if (user.role === ROLES.STUDENT) {
-    studentDashboard.style.display = "block";
+    studentDashboard.classList.remove("hidden");
     studentGreeting.textContent = `Вітаємо, ${user.username}!`;
     renderStudentAssignments(user.username);
   }
@@ -71,7 +71,8 @@ loginForm.addEventListener("submit", (e) => {
       id: STUDENTS.find((s) => s.name === username).id,
     };
   } else {
-    errorDiv.textContent = "Неправильні дані для входу.";
+    errorDiv.textContent =
+      "Неправильні дані для входу. Введіть дійсні дані про користувача.";
     errorDiv.style.display = "block";
     return;
   }
@@ -137,6 +138,10 @@ assignmentForm?.addEventListener("submit", (e) => {
   localStorage.setItem("assignments", JSON.stringify(assignments));
 
   assignmentForm.reset();
+
+  if (assignmentFilter) {
+    assignmentFilter.value = "all";
+  }
   alert(
     `ДЗ "${title}" призначено ${students.length} учням 9-А. Варіанти рандомізовані.`
   );
@@ -152,6 +157,7 @@ const renderTeacherAssignments = (filter = "all") => {
     const isOverdue = new Date(a.deadline) < new Date();
     if (filter === "overdue") return isOverdue && !a.isFinished;
     if (filter === "active") return !isOverdue && !a.isFinished;
+    if (filter === "finished") return a.isFinished;
     return true;
   });
 
@@ -161,6 +167,8 @@ const renderTeacherAssignments = (filter = "all") => {
         ? "прострочених"
         : filter === "active"
         ? "активних"
+        : filter === "finished"
+        ? "завершених"
         : ""
     } завдань.</p>`;
     return;
@@ -179,7 +187,7 @@ const renderTeacherAssignments = (filter = "all") => {
       ? "status--complited"
       : isOverdue
       ? "status--overdue"
-      : "text-primary";
+      : "status--assigned";
     const statusText = isFinished
       ? "Завершено"
       : isOverdue
@@ -220,14 +228,22 @@ const renderTeacherAssignments = (filter = "all") => {
                               .map(
                                 (s) => `
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    ${s.studentName} (Варіант: ${s.variant})
-                                    ${
+                                    <p class="mb-1 small">${
+                                      s.studentName
+                                    } (Варіант: ${s.variant})</p>
+                                    <p class="mb-1 small ${
                                       s.grade === null
-                                        ? `Надіслано на перевірку: ${
-                                            s.isSubmitted ? "Так" : "Ні"
-                                          }`
+                                        ? s.isSubmitted
+                                          ? "text-primary"
+                                          : "text-accent"
                                         : ""
-                                    }
+                                    }">${
+                                  s.grade === null
+                                    ? s.isSubmitted
+                                      ? "Надіслано на перевірку"
+                                      : "Ненадіслано на перевірку"
+                                    : ""
+                                }</p>
                                     <div class="d-flex align-items-center">
                                         <input type="number" class="form-control form-control-sm me-2" placeholder="Оцінка" min="0" max="100" value="${
                                           s.grade !== null ? s.grade : ""
@@ -359,15 +375,25 @@ const renderStudentAssignments = (studentName) => {
                     }">
                         <div class="card-body">
                             <h5 class="card-title">${a.title}</h5>
-                            <p class="card-text small mb-1">Ваш варіант: <strong>${
+                            <p class="card-text small mb-3">Ваш варіант: <strong>${
                               submission.variant
                             }</strong></p>
+                            <p class="card-text small mb-3">
+                              ${a.content}
+                            </p>
                             <p class="card-text small mb-1">Дедлайн: ${new Date(
                               a.deadline
-                            ).toLocaleString()}</p>
+                            ).toLocaleString("uk-UA", {
+                              year: "numeric",
+                              month: "numeric",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: false,
+                            })}</p>
                             <p class="card-text small mb-0">Статус: <span class="${statusClass}">${statusText}</span></p>
                             <button class="btn btn-sm btn-primary mt-2 mark-finished-btn${
-                              isSubmitted ? " hidden" : ""
+                              isSubmitted || submission.grade ? " hidden" : ""
                             }" data-id="${a.assignmentId}">
                                 <i class="fa-solid fa-check"></i> Надіслати на перевірку
                             </button>
@@ -396,7 +422,8 @@ const renderStudentAssignments = (studentName) => {
         submission.isSubmitted = true;
         localStorage.setItem("assignments", JSON.stringify(assignments));
 
-        btn.textContent = "Надіслано на перевірку";
+        location.reload();
+        // btn.textContent = "Надіслано на перевірку";
       });
     });
 

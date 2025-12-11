@@ -48,7 +48,7 @@ const renderApp = (user) => {
     renderTeacherAssignments();
   } else if (user.role === ROLES.STUDENT) {
     studentDashboard.classList.remove("hidden");
-    studentGreeting.textContent = `Вітаємо, ${user.username}!`;
+    studentGreeting.textContent = `Вітаємо, ${user.username}`;
     renderStudentAssignments(user.username);
   }
 };
@@ -60,7 +60,7 @@ loginForm.addEventListener("submit", (e) => {
   const errorDiv = document.getElementById("login-error");
 
   if (role === ROLES.TEACHER && username.toLowerCase() === "anastasia") {
-    currentUser = { username: "Анастасія Сергіївна", role: ROLES.TEACHER };
+    currentUser = { username: "Анастасія Олексіївна", role: ROLES.TEACHER };
   } else if (
     role === ROLES.STUDENT &&
     STUDENTS.some((s) => s.name === username)
@@ -392,7 +392,7 @@ const renderStudentAssignments = (studentName) => {
                               hour12: false,
                             })}</p>
                             <p class="card-text small mb-0">Статус: <span class="${statusClass}">${statusText}</span></p>
-                            <button class="btn btn-sm btn-primary mt-2 mark-finished-btn${
+                            <button class="btn btn-sm btn-primary mt-4 mark-finished-btn${
                               isSubmitted || submission.grade ? " hidden" : ""
                             }" data-id="${a.assignmentId}">
                                 <i class="fa-solid fa-check"></i> Надіслати на перевірку
